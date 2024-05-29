@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+ href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+ crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+    <h2> View Products Here</h2>
+    <a href="/">Add Product"</a>
+    <p class="text-success"  th:text="${msg}"></p>
+    <table class="table table-borderd table -striped">
+        <thead>
+            <tr>
+                <th> ID</th>
+                <th> Name</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th> Action</th>
+            </tr>
+        </thead>
+        <tbody>
+			
+            <!-- Loop through the products and display them in rows -->
+                <tr th:each="p:${plist}">
+                    <td th:text="${p.pid}"></td>
+                    <td th:text="${p.pname}"></td>
+                    <td th:text="${p.price}"></td>
+                    <td th:text="${p.qty}"></td>
+                    <td>
+						<button class="btn btn-primary"><a class="text-white" th:href="@{'/edit/' + ${p.pid}}">Edit</a></button>
+						<button class="btn btn-danger"><a th:href="@{'/delete/' + ${p.pid}}">Delete</a></button>
+						
+						</td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+     <a href="/loadForm">Add New Product</a>
+</body>
