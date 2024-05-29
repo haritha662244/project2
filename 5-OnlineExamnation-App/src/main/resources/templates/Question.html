@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Questions</title>
+    <script>
+        var sessionTime = 30000; 
+        var timerDisplay = document.getElementById('timeLeft');
+
+        function updateTimer() {
+            var minutes = Math.floor(sessionTime / 60);
+            var seconds = sessionTime % 60;
+            timerDisplay.textContent = ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2);
+            sessionTime--;
+
+            if (sessionTime < 0) {
+                clearInterval(timerInterval);
+                window.location.href = '/examCompleted';
+            }
+        }
+
+        var timerInterval = setInterval(updateTimer, 1000);
+    </script>
+</head>
+<body>
+    <h2>Questions</h2>
+    <!-- Add questions here -->
+    <p>Session Time: <span id="timeLeft"></span></p>
+</body>
+</html>

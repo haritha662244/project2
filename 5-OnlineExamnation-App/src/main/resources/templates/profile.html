@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+    <h2>Profile</h2>
+    <p th:text="'Welcome, ' + ${user.username}"></p>
+    <p th:text="'Email: ' + ${user.email}"></p>
+    <!-- Other profile information -->
+    <a href="/updateProfile">Update Profile</a>
+    <a href="/updatePassword">Update Password</a>
+    <a href="/mcq">Start MCQ</a>
+    <form action="/logout" method="post">
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>

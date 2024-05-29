@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancellation Form</title>
+    
+</head>
+<body>
+	<div class="container">
+	<form th:object="${cancellation.pnrToCancel}" th:action="@{cancellation}"  method="post">
+    <h1>Cancellation Form</h1>
+    <form action="/reservations/cancel" method="post">
+        <label for="pnrToCancel">PNR to Cancel:</label>
+        <input type="text" id="pnrToCancel" name="pnrToCancel" th:value="${cancellation.pnrToCancel}"><br><br>
+        <!-- Other fields for cancellation -->
+        <button type="submit">Cancel Reservation</button>
+    </form>
+    	</div>
+</body>
+</html>

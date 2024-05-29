@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Form</title>
+    <!-- Include any necessary CSS or JavaScript files -->
+</head>
+<body>
+    <h1>Reservation Form</h1>
+    <form action="/reservations" method="post">
+        <label for="pnr">PNR:</label>
+        <input type="text" id="pnr" name="pnr" th:value="${reservation.pnr}"><br><br>
+        <label for="trainNumber">Train Number:</label>
+        <input type="text" id="trainNumber" name="trainNumber" th:value="${reservation.trainNumber}"><br><br>
+       
+        <button type="submit">Reserve</button>
+    </form>
+	</div>
+</body>
+</html>

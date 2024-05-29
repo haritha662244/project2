@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Timer and Auto Submit</title>
+</head>
+<body>
+    <h2>Timer and Auto Submit</h2>
+    <button onclick="startTimer()">Start Timer</button>
+    <button onclick="autoSubmit()">Auto Submit</button>
+    <div id="timer"></div>
+
+    <script>
+    var timerInterval;
+    var timeLeft = 300; // 5 minutes in seconds
+
+    function startTimer() {
+        timerInterval = setInterval(updateTimer, 1000); // Update timer every second
+    }
+
+    function updateTimer() {
+        var minutes = Math.floor(timeLeft / 60);
+        var seconds = timeLeft % 60;
+
+        document.getElementById('timer').innerText = "Time Left: " + minutes + "m " + seconds + "s";
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval); // Stop the timer when time is up
+            autoSubmit(); // Auto-submit answers
+        } else {
+            timeLeft--; // Decrement time left
+        }
+    }
+
+    function autoSubmit() {
+        // Logic to auto-submit MCQ answers
+        // For demonstration purposes, this function just displays an alert
+        alert("Auto-submitting answers...");
+    }
+</script>
+
+</body>
+</html>

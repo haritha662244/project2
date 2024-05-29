@@ -1,0 +1,17 @@
+
+server:
+  compression:
+    excluded-user-agents:
+      datasource:'' 
+dda-auto: update
+driver-class-name: MySQL.jdbc.driver.MySQLlDriver
+format_sql: true
+hibernate: ''
+hibernet: ''
+jpa: ''
+password: Haritha123
+properties: ''
+show_sql: true
+
+url: jdbc:mysql://localhost:3306/haritha
+username: root

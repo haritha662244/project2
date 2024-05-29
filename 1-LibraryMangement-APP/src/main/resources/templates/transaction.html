@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Transaction Management</title>
+</head>
+<body>
+    <h1>Transaction Management</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Book</th>
+                <th>Date Borrowed</th>
+                <th>Date Returned</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="transaction : ${transactions}">
+                <td th:text="${transaction.id}"></td>
+                <td th:text="${transaction.user.username}"></td>
+                <td th:text="${transaction.book.title}"></td>
+                <td th:text="${transaction.dateBorrowed}"></td>
+                <td th:text="${transaction.dateReturned}"></td>
+                <td th:text="${transaction.status}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

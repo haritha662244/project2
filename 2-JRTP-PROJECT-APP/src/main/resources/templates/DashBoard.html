@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Page</title>
+</head>
+<body>
+    <h2>Dashboard Page</h2>
+    <div id="quoteDisplay">
+        <p><strong>Random Quote</strong></p>
+        <p id="quoteText"></p>
+        <button onclick="getNewQuote()">Get New Quote</button>
+    </div>
+    
+    <script>
+        function getNewQuote() {
+            fetch('https://type.fit/api/quotes')
+                .then(response => response.json())
+                .then(data => {
+                    // Select a random quote from the data
+                    const randomIndex = Math.floor(Math.random() * data.length);
+                    const randomQuote = data[randomIndex].text;
+                    
+                    // Display the random quote
+                    document.getElementById('quoteText').innerText = randomQuote;
+                })
+      .catch(error => {
+                    console.error('Error fetching quote:', error);
+                });
+        }
+
+        // Fetch a random quote when the page loads
+        document.addEventListener('DOMContentLoaded', getNewQuote);
+    </script>
+
+    <p><a href="logout.html">Logout</a></p>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<span lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+  </head>
+  <form>
+    <h2>Login Form</h2>
+    <form 
+     method="post"
+     role="form"
+     th:action="@{/Login}"
+     th:object="${user}"
+     
+     
+				
+<div class="container">
+<div class=" form-container">
+	<div th:if="${"msg","sucess"}">
+	<p> Registration SucessFull	</p>
+	
+ <div class="form-group">
+ <label for="email">Email</label>
+ <input th:field="{username}" type="text" id="email" name="email" placeholder="" >
+ </div>
+ 
+ <div class="form-group">
+ <label for="password">Password</label>
+ <input th:filed="{username}" type="password" id="password" name="password" placeholder="">
+ </div>
+ <button type=""submit>Registerd</button>
+ </div>
+   </form>
+   <span Already Registered <a href="@{/Login}"> Login</a></span> 
+   </div>
+   </div>
+  </body>
+</html>

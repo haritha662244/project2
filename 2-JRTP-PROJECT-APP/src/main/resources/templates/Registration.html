@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <style>
+        form {
+            margin: 20px auto;
+            padding: 20px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        select, input[type="email"], input[type="submit"] {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form id="registrationForm" onsubmit="generatePassword(event)">
+        <select id="countrySelect" onchange="fetchStates()">
+            <option value="">Select Country</option>
+        </select>
+        <select id="stateSelect" onchange="fetchCities()">
+            <option value="">Select State</option>
+        </select>
+        <select id="citySelect">
+            <option value="">Select City</option>
+        </select>
+        <input type="email" id="emailInput" placeholder="Email" required>
+        <input type="submit" value="Register">
+    </form>
+
+    <script>
+        function fetchCountries() {
+            fetch('/countries')
+            .then(response => response.json())
+            .then(data => {
+                const countrySelect = document.getElementById('countrySelect');
+                data.forEach(country => {
+                    const option = document.createElement('option');
+                    option.value = country.id;
+                    option.textContent = country.name;
+                    countrySelect.appendChild(option);
+                });
+            });
+        }
+
+        function fetchStates() {
+            const countryId = document.getElementById('countrySelect').value;
+            const stateSelect = document.getElementById('stateSelect');
+            stateSelect.innerHTML = '<option value="">Select State</option>';
+            if (countryId) {
+                fetch(`/states/${countryId}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(state => {
+                        const option = document.createElement('option');
+                        option.value = state.id;
+                        option.textContent = state.name;
+                        stateSelect.appendChild(option);
+                    });
+                });
+            }
+        }
+
+        function fetchCities() {
+            const stateId = document.getElementById('stateSelect').value;
+            const citySelect = document.getElementById('citySelect');
+            citySelect.innerHTML = '<option value="">Select City</option>';
+            if (stateId) {
+                fetch(`/cities/${stateId}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(city => {
+                        const option = document.createElement('option');
+                        option.value = city.id;
+                        option.textContent = city.name;
+                        citySelect.appendChild(option);
+                    });
+                });
+            }
+        }
+
+        function generateRandomPassword(length) {
+            const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * charset.length);
+                password += charset[randomIndex];
+            }
+            return password;
+        }
+
+        function generatePassword(event) {
+            event.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            const password = generateRandomPassword(8); // Generate 8-character password
+            // Add logic to send password to email
+            console.log(`Generated password for ${email}: ${password}`);
+            // For demonstration, displaying generated password in console
+            // In actual implementation, you should send this password to the user's email
+        }
+
+        fetchCountries();
+    </script>
+</body>
+</html>

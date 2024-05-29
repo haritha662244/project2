@@ -1,0 +1,33 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+</head>
+<body>
+    <h1>Welcome to Library Management System</h1>
+    <input type="text" id="searchInput" placeholder="Search by Title">
+    <button onclick="searchBooks()">Search</button>
+    <div id="bookList"></div>
+
+    <script>
+        function searchBooks() {
+            var title = document.getElementById("searchInput").value;
+            fetch(`/api/books/search?title=${title}`)
+                .then(response => response.json())
+                .then(data => {
+                    var bookList = document.getElementById("bookList");
+                    bookList.innerHTML = "";
+                    data.forEach(book => {
+                        var bookItem = document.createElement("div");
+                        bookItem.textContent = `Title: ${book.title}, Author: ${book.author}, Category: ${book.category}`;
+                        bookList.appendChild(bookItem);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

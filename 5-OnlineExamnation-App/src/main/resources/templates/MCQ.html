@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MCQ</title>
+    <script>
+        // Timer functionality using JavaScript
+        // Submit form automatically after timer expires
+        setTimeout(function(){
+            document.getElementById("mcqForm").submit();
+        }, 600000); // 10 minutes timer
+    </script>
+</head>
+<body>
+    <h2>Multiple Choice Questions</h2>
+    <form id="mcqForm" action="#" th:action="@{/submitMCQ}" method="post">
+        <label th:each="question : ${questions}" th:text="${question.text}"></label><br>
+        <input type="radio" th:each="option : ${question.options}" th:name="${question.id}" th:value="${option}" th:text="${option}">
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
