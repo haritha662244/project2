@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+    <style>
+        /* Basic CSS styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-group input[type="text"], .form-group input[type="date"], .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .error-msg {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        #can{
+        padding-left: 200px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Reservation Form</h2>
+    <p th:if="${msg}" class="error-msg" th:text="${msg}"></p>
+     <h2 th:if="${pnrNumber}" class="success" th:text="${pnrNumber}"> You Have to Save For Future Usage</h2>
+    <form th:action="@{/reservation}" method="post">
+        <div class="form-group">
+            <label for="trainNumber">Train Number:</label>
+            <select id="trainNumber" name="trainNumber" required>
+                <option value="">Select Train Number</option>
+                <option value="12301">12301</option>
+                <option value="12422">12422</option>
+                <option value="12626">12626</option>
+                <!-- Add more train numbers as needed -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="trainName">Train Name:</label>
+            <select id="trainName" name="trainName" required>
+                <option value="">Select Train Name</option>
+                <option value="Rajdhani Express">Rajdhani Express</option>
+                <option value="Duronto Express">Duronto Express</option>
+                <option value="Shatabdi Express">Shatabdi Express</option>
+                <!-- Add more train names as needed -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="classType">Class Type:</label>
+            <select id="classType" name="classType" required>
+                <option value="">Select Class Type</option>
+                <option value="First Class">First Class</option>
+                <option value="Second Class">Second Class</option>
+                <option value="Third Class">Third Class</option>
+                <!-- Add more class types as needed -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="dateOfJourney">Date of Journey:</label>
+            <input type="date" id="dateOfJourney" name="dateOfJourney" required>
+        </div>
+        <div class="form-group">
+            <label for="fromPlace">From Place:</label>
+            <input type="text" id="fromPlace" name="fromPlace" required>
+        </div>
+        <div class="form-group">
+            <label for="toDestination">To Destination:</label>
+            <input type="text" id="toDestination" name="toDestination" required>
+        </div>
+        <div class="form-group">
+            <label for="passengerName">Passenger Name:</label>
+            <input type="text" id="passengerName" name="passengerName" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+        </div>
+        <button type="submit" class="btn">Make Reservation</button>
+         <div id=can>  <a href="/cancellation">Cancel Reservation</a></div>
+        
+    </form>
+   
+     
+</div>
+</body>
+</html>
