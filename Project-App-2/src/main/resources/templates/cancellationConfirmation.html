@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cancellation Confirmation</title>
+    <style>
+        /* Basic CSS styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .reservation-info {
+            margin-bottom: 20px;
+        }
+        .reservation-info label {
+            font-weight: bold;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Cancellation Confirmation</h2>
+    <div class="reservation-info">
+        <label>PNR Number:</label>
+        <span th:text="${reservation.pnrNumber}"></span>
+    </div>
+    <div class="reservation-info">
+        <label>Train Number:</label>
+        <span th:text="${reservation.trainNumber}"></span>
+    </div>
+    <div class="reservation-info">
+        <label>Train Name:</label>
+        <span th:text="${reservation.trainName}"></span>
+    </div>
+    <div class="reservation-info">
+        <label>Class Type:</label>
+        <span th:text="${reservation.classType}"></span>
+    </div>
+   <div class="reservation-info">
+        <label>Date of Journey:</label>
+        <span th:text="${reservation.dateOfJourney}"></span>
+    </div> 
+    <div class="reservation-info">
+        <label>From Place:</label>
+        <span th:text="${reservation.fromPlace}"></span>
+    </div>
+    <div class="reservation-info">
+        <label>To Destination:</label>
+        <span th:text="${reservation.toDestination}"></span>
+    </div>
+    <div class="reservation-info">
+        <label>Passenger Name:</label>
+        <span th:text="${reservation.passengerName}"></span>
+    </div>
+    <div class="reservation-info">
+        <label>Passenger Mail:</label>
+        <span th:text="${reservation.email}"></span>
+    </div>
+    <!-- Add more reservation details as necessary -->
+    <form th:action="@{/confirmCancellation}" method="post">
+        <input type="hidden" name="pnrNumber" th:value="${reservation.pnrNumber}">
+        <button type="submit" class="btn">Confirm Cancellation</button>
+    </form>
+</div>
+</body>
+</html>
